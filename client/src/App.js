@@ -15,7 +15,7 @@ import {getPosts} from "./actions/posts";
 // useState(): allows you to add state to a functional component
 const App = () => {
 
-  // const[currentId, setCurrentId] = useState(0);
+  const [currentId, setCurrentId] = useState(0);
   const dispatch = useDispatch();
   const classes = useStyles();
 
@@ -37,7 +37,7 @@ const App = () => {
                 <Posts/> 
             </Grid>
             <Grid item xs={12} sm={4}>
-                <Form/>
+                <Form currentId={currentId} setCurrentId={setCurrentId}/>
             </Grid>
           </Grid>
         </Container>  

@@ -31,9 +31,10 @@ export const getPost = async(req, res)=>{
 
 export const createPost = async (req, res) => {
     const {title, message, selectedFile, creator, tags} = req.body;
-    const newPostMessage = new postMessage({title, message, selectedFile, creator, tags});
+    const newPostMessage = new PostMessage({title, message, selectedFile, creator, tags});
     
     try {
+        console.log("pressed upto here");
        await newPostMessage.save();
        res.status(201).json(newPostMessage);
        console.log("writing upto here");
@@ -52,12 +53,12 @@ export const updatePost = async(req, res) => {
 
     const updatedPost = {creator, title, message, tags, selectedFile, _id:id};
 
-    await PostMessage.findIdAndUpdate(id, updatePost, {new: true});
+    await PostMessage.findByIdAndUpdate(id, updatePost, {new: true});
 
     res.json(updatedPost);
 
-
 };
+
 
 export const deletePost = async(req, res)=>{
 
