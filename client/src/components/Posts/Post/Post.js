@@ -9,7 +9,7 @@ import {useDispatch} from "react-redux";
 import useStyles from "./styles";
 import {likePost, deletePost} from "../../../actions/posts";
 
-const Post = ({post, setCurrrentId}) => {
+const Post = ({post, setCurrentId}) => {
 
   const dispatch = useDispatch();  // dispatch will do the data loading dispatching.
   const classes = useStyles();
@@ -23,7 +23,7 @@ const Post = ({post, setCurrrentId}) => {
       </div>
 
       <div className={classes.overlay2}>
-        <Button style={{color: 'white'}} size='small' onClick={()=>setCurrrentId(post._id)}><MoreHorizIcon fontSize='default'/></Button>
+        <Button style={{color: 'white'}} size='small' onClick={()=>setCurrentId(post._id)}><MoreHorizIcon fontSize='default'/></Button>
       </div>
 
       <div className={classes.details}>
