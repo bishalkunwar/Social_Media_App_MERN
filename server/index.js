@@ -4,6 +4,10 @@ import mongoose from 'mongoose';
 import cors from 'cors'; 
 
 import postRoutes from "./routes/posts.js";
+//import userRoutes from "./routes/user.js";
+
+// User A&A is working at backend, frontend on the way.
+// Bcrypt used for hashing, JWT used for token and session creating.
 
 const app = express();
 
@@ -12,6 +16,7 @@ app.use(bodyParser.urlencoded({limit: "30mb", extend: true}));
 app.use(cors());
 
 app.use('/posts', postRoutes);
+// app.use('/users', userRoutes);
 
 const CONNECTION_URL = "mongodb+srv://socialmediaapp:socialmediaapp@mediaapp.d1exkzt.mongodb.net/test";
 const PORT = process.env.PORT || 5000;
