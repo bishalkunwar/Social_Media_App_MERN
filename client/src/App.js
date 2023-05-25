@@ -25,7 +25,7 @@ const App = () => {
 
 export default App;
 
-{/* <Route path="/auth" exact component={auth}/> */}
+
 
 // Grow Component adds a Grow animation to a child element or component
 // The Material Design responsive layout grid adapts to screen size and orientation, ensuring consistency across layouts.

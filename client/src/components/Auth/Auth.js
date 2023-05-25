@@ -1,20 +1,29 @@
-import React from 'react';
+import React,{ useState} from 'react';
 import {Avatar, Button, Paper, Grid, Typography, Container} from "@material-ui/core";
-
+import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import useStyles from "./styles";
-
+import Input from './Input';
 
 const Auth = () => {
 
     const classes = useStyles();
-    const state = null;  
-    const isSignUp = false;
+    // const isSignUp = false;
+    const [showPassword, setShowPassword] = useState(false);
+    const [isSignUp, setIsSignUp] = useState(true);
     
+    const handleShowPassword = () => setShowPassword((prevShowPassword) => !prevShowPassword);
+   
     const handleSubmit = () => {
 
     };
 
     const handleChange = () => {
+
+    };
+
+    const switchMode = () => {
+        setIsSignUp((prevIsSignUp)=>!prevIsSignUp);
+        handleShowPassword(false);
 
     };
 
@@ -34,6 +43,20 @@ const Auth = () => {
                                 <Input name="lastName" label="Last Name" handleChange={handleChange} half/>
                             </>
                         )}
+
+                        <Input name="email" label="Email Address" handleChange={handleChange} type="email"/>
+                        <Input name="password" label="password" handleChange={handleChange} type={showPassword?"text":"password"} handleShowPassword={handleShowPassword}/>
+                    </Grid>
+
+                    <Button>
+                        {isSignUp?"Sign In":"Sign up"}
+                    </Button>
+                    <Grid container justify='flex-end'>
+                            <Grid item>
+                                <Button onClick={switchMode}>
+                                    {isSignUp?"Already have an account? Sign In": "Don't have an account? Sign Up"}
+                                </Button>
+                            </Grid>
                     </Grid>
                 </form>
             
