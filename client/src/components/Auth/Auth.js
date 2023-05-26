@@ -6,30 +6,37 @@ import {useDispatch} from 'react-redux';
 import useStyles from "./styles";
 import Input from './Input';
 import Icon from "./icon";
+import { useHistory, useLocation } from 'react-router-dom/cjs/react-router-dom.min';
+import signUp, signIn from "../../actions/auth";
 
-// const initialState = {firstName: '', lastName: '', email: '', password: '', confirmPassword: ''};
+const initialState = {firstName: '', lastName: '', email: '', password: '', confirmPassword: ''};
 
 const Auth = () => {
 
     const classes = useStyles();
     const dispatch = useDispatch();
+    const history = useHistory();
+    const location = useLocation();
     const [showPassword, setShowPassword] = useState(false);
-    // // const isSignUp =true;
-    const [isSignUp, setIsSignUp] = useState(true);
-    //const [form, setForm] = useState(initialState);
+    const [isSignUp, setIsSignUp] = useState(false);
+    const [form, setForm] = useState(initialState);
     
     const handleShowPassword = () => setShowPassword((prevShowPassword) => !prevShowPassword);
    
-    const handleSubmit = () => {
-       
+    const handleSubmit = (e) => {
+       e.preventDefault();
+
+       if(isSignUp){
+        dispatch(signUp(form, history));
+       }else{
+        dispatch(signIn(form, history));
+       }
     };
 
-    const handleChange = () => {
-
-    };
+    const handleChange = (e) => setForm({...form, [e.target.name]: e.target.value});
 
     const switchMode = () => {
-        // setForm(initialState);
+        setForm(initialState);
         setIsSignUp((prevIsSignUp)=>!prevIsSignUp);
         setShowPassword(false);
 
