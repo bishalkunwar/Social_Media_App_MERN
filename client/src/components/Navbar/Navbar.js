@@ -3,7 +3,6 @@ import { AppBar, Typography, Toolbar, Avatar, Button } from '@material-ui/core';
 import {Link, useHistory, useLocation} from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import decode from "jwt-decode";
-
 import * as actionType from "../../constants/actionTypes";
 import ppp from "../../images/ppp.jpeg";
 import useStyles from "./styles";
@@ -17,21 +16,22 @@ const Navbar = () => {
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
 
     const logout=()=>{
-      dispatch({type: 'LOGOUT'});
+      dispatch({type: actionType.LOGOUT});
 
       history.push('/auth');
       setUser(null);
     };
+    
 
-    useEffect(()=>{
+    useEffect(() => {
       const token = user?.token;
-
-      if(token){
+  
+      if (token) {
         const decodedToken = decode(token);
-
-        if(decodedToken.exp * 1000 < new Date.getTime()) logout();
+  
+        if (decodedToken.exp * 1000 < new Date().getTime()) logout();
       }
-
+  
       setUser(JSON.parse(localStorage.getItem('profile')));
     }, [location]);
 

@@ -8,6 +8,7 @@ export const signUp = async(req, res)=> {
     const {email, password, firstName, lastName} = req.body;
 
     try {
+        console.log("hitted here")
         const oldUser = await UserModal.findOne({email});
 
         if(oldUser) return res.status(400).json({message: "User already exists"});
@@ -15,13 +16,16 @@ export const signUp = async(req, res)=> {
         const hasedPassword = await bcrypt.hash(password, 12);
 
         const result = await UserModal.create({email, password: hasedPassword, name: `${firstName} ${lastName}`});
+        console.log("111")
 
         const token = jwt.sign({email: result.email, id: result._id}, secret, {expiresIn: "1h"});
+        console.log("222")
         
         res.status(201).json({result, token});
+        console.log("upto here");
     } catch (error) {
-        res.status(500).json({message: "Something Went Wrong"});
-        console.log(error);
+        res.status(500).json({message: "sorry, Something Went Wrong"});
+        console.log(error, "error here");
     }
 
 };

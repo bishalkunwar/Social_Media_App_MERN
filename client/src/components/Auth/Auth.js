@@ -6,8 +6,8 @@ import {useDispatch} from 'react-redux';
 import useStyles from "./styles";
 import Input from './Input';
 import Icon from "./icon";
-import { useHistory, useLocation } from 'react-router-dom/cjs/react-router-dom.min';
-import signUp, signIn from "../../actions/auth";
+import { useHistory} from 'react-router-dom';
+import {signUp, signIn} from "../../actions/auth";
 
 const initialState = {firstName: '', lastName: '', email: '', password: '', confirmPassword: ''};
 
@@ -16,7 +16,6 @@ const Auth = () => {
     const classes = useStyles();
     const dispatch = useDispatch();
     const history = useHistory();
-    const location = useLocation();
     const [showPassword, setShowPassword] = useState(false);
     const [isSignUp, setIsSignUp] = useState(false);
     const [form, setForm] = useState(initialState);

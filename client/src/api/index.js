@@ -11,12 +11,12 @@ API.interceptors.request.use((req)=>{
     return req;
 })
 
-export const fetchPosts = () => API.get(url);
+export const fetchPosts = () => API.get('/posts');
 export const createPost = (newPost) => API.post('/posts', newPost);
 export const updatePost = (id, updatePost) => API.patch(`/posts/${id}`, updatePost);
 export const likePost = (id)=> API.patch(`/posts/${id}/likePost`);
 export const deletePost = (id)=> API.delete(`/posts/${id}`);
 
 
-export const signUp = (formData) => API.post('/user/signUp', formData);
-export const signIn = (formData) => API.post('/user/signUp', formData);
+export const signUp = (formData) => API.post('/users/signUp', formData);
+export const signIn = (formData) => API.post('/users/signIn', formData);
